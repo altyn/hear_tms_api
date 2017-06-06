@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class HearConfig(AppConfig):
-    name = 'hear'
+    name = 'apps.hear'
+    verbose_name = "Музыка"
