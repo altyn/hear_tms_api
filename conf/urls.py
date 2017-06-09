@@ -21,7 +21,7 @@ from django.contrib import admin
 admin.site.site_header = 'TMS Platform'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^kiruu/', admin.site.urls),
     url(r'^api/', include('apps.apicore.urls', namespace='apicore')),
 ]
 

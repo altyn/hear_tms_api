@@ -7,20 +7,16 @@ from rest_framework.views import APIView
 from .models import Hear
 from .serializers import HearSerializer
 from subprocess import Popen, PIPE
+import os, sys
 
 
-def pwd_test():
-    proc = Popen("pwd", stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    result = "No comm"
-    exit_code = proc.wait()
-    if exit_code != 0:
-        for line in proc.stderr:
-            result = line
-    else:
-        for line in proc.stdout:
-            result = line
+lookup_path = "/usr/bin/python2.7 /home/noteacer/TMS/Music/echoprint-server/examples/lookup_API.py"
+
+def get_music_id(file):
+    proclist = [cmd, os.path.abspath(file),]
+    p = Popen(proclist, stdout=PIPE)
+    result = p.communicate()[0]
     return result
-
 
 class HearAPIView(viewsets.ModelViewSet):
     """This class defines the create behavior of our hear api """
@@ -37,6 +33,8 @@ class HearAPIView(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def perform_create(self, serializer):
-        a = pwd_test()
-        self.request.artist = a
-        serializer.save(artist=self.request.artist)
+#        a = get_music_id(self.request.file)
+        #fl = serializer.data
+        self.request.artist = "artistname-23"
+        self.request.song = "songname"
+        serializer.save(artist=self.request.artist, song=self.request.song)
