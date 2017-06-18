@@ -13,6 +13,10 @@ import fp
 codegen_path = os.path.abspath(
         os.path.join(base_path, "echoprint-codegen/echoprintcodegen"))
 
+
+def ffprobe(file):
+    pass
+
 def codegen(file):
     proclist = [codegen_path,
                 os.path.abspath(file),]

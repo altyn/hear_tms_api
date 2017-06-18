@@ -122,11 +122,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
@@ -140,7 +141,7 @@ REST_FRAMEWORK = {
     'UNICODE_JSON': True,
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-        #'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ], 
     'DEFAULT_PERMISSION_CLASSES': [
 #        'rest_framework.permissions.IsAdminUser',
@@ -151,3 +152,8 @@ REST_FRAMEWORK = {
     ],
     'PAGE_SIZE': 10
 }
+
+FILE_UPLOAD_HANDLERS = (
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+)
+#FILE_UPLOAD_MAX_MEMORY_SIZE = 20Mb
