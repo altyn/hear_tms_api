@@ -16,7 +16,7 @@ class Melody(models.Model):
         verbose_name="Мелодия"
         verbose_name_plural="Мелодии"
         get_latest_by="id"
-        ordering = ['id']
+        ordering = ['artist']
        
     def __str__(self):
         return "%s - %s" % (self.artist,self.song)
