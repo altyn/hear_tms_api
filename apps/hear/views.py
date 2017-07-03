@@ -6,12 +6,14 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
+from django.http import Http404 
 
 from .models import Hear, Melody
 from .serializers import HearSerializer
 
 from subprocess import Popen, PIPE, check_output
 import os, sys
+import json
 
 
 cmd_p27 = "/usr/bin/python2.7"
@@ -33,13 +35,12 @@ def get_id_melody_by_trid(trid):
         return melody
     except ObjectDoesNotExist as e:
         return melody
-#        obj = "Doesn't exist"
-#        return Response(obj, status=status.HTTP_404_NOT_FOUND)
-    
 
 class HearAPIView(viewsets.ModelViewSet):
     """This class defines the create behavior of our hear api """
-    queryset = Hear.objects.all()[:1]
+    #queryset = get_object_or_404(Hear, pk=1)
+    queryset = Hear.objects.filter()[:1]
+    
     serializer_class = HearSerializer
     parser_classes = (MultiPartParser, FormParser,)
     
