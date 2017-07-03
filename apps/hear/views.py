@@ -27,7 +27,7 @@ def get_music_id(file):
         return "File error or corruped"
 
 def get_id_melody_by_trid(trid):
-    melody = Melody.objects.get(id=0)
+    melody = Melody.objects.get(id=1)
     try:        
         melody = Melody.objects.get(track_id=trid)
         return melody

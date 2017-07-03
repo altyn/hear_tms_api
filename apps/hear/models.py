@@ -25,7 +25,7 @@ class Melody(models.Model):
 class Hear(models.Model):
     id = models.AutoField(db_column="id", primary_key=True)
 #    song = models.CharField(max_length=255, blank=True, null=True, db_column="song")
-    song = models.ForeignKey(Melody, on_delete=models.SET_NULL, blank=True, null=True, db_column="song", default=0)
+    song = models.ForeignKey(Melody, on_delete=models.SET_NULL, blank=True, null=True, db_column="song", default=1)
     detail = models.CharField(db_column="detail", max_length=255)
     mpfile = models.FileField(upload_to='hear/', db_column="mpfile", null=False, blank=False)
     date_time = models.DateTimeField(db_column="date_time", auto_now_add=True, null=False)
